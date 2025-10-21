@@ -1,9 +1,13 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include <M5_PbHub.h>
+#include <MicroOscSlip.h>
 
 
 
+
+
+MicroOscSlip<128> monOsc(&Serial);
 
 
 #define BROCHE_ATOM_FIL_BLANC 32
@@ -32,6 +36,11 @@ void setup()
 
   // pinMode(BROCHE_ATOM_FIL_BLANC, INPUT_PULLUP);
   pinMode(BROCHE_ATOM_BTN, INPUT_PULLUP);
+
+
+
+  Serial.begin(115200);
+
 }
 
 void loop()
@@ -72,6 +81,12 @@ void loop()
 
   // TOUCHE DE CLAVIER
   
+
+
+monOsc.sendInt( "/bouton" , value);
+
+  
+
   if (value == 0)
   {
 
